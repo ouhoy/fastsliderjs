@@ -2,6 +2,7 @@ function $(id, slectAll = false) {
   return slectAll ? document.querySelectorAll(id) : document.querySelector(id);
 }
 const image = $("img");
+const arrowBtn = $(".arrow-btn", true);
 
 function getAverageColor(imageElement, ratio) {
   const canvas = document.createElement("canvas");
@@ -50,7 +51,9 @@ function getAverageColor(imageElement, ratio) {
 }
 
 image.addEventListener("load", () => {
-  console.log("img loaded");
   const { R, G, B } = getAverageColor(image, 4);
   document.body.style.background = `rgb(${R}, ${G},${B})`;
+  arrowBtn.forEach(
+    (el) => (el.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`)
+  );
 });
