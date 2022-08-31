@@ -108,6 +108,11 @@ class Slider {
     $(`${this.container} .dots__dot[data-slider="${slides}"]`).classList.add(
       "dots__dot--active"
     );
+    const { R, G, B } = getAverageColor(this.img[this.curSlide], 4);
+    document.body.style.background = `rgb(${R}, ${G},${B})`;
+    arrowBtn.forEach(
+      (el) => (el.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`)
+    );
   }
   #createDots() {
     if (!this.dotContainer) return;
