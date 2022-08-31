@@ -14,14 +14,18 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   min-height: 100vh;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
 }
 
 img {
-  width: 100%;
+  width: 476px;
   height: 640px;
   border-radius: 16px;
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.222);
+          box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.222);
 }
 
 .slider-container {
@@ -34,8 +38,7 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  max-width: 700px;
-  width: 100%;
+  position: relative;
 }
 
 .arrow-btn {
@@ -44,7 +47,7 @@ img {
   min-width: 48px;
   min-height: 48px;
   border-radius: 64px;
-  margin: 0 32px;
+  margin: 0 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -54,6 +57,8 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: background 0.4s;
+  transition: background 0.4s;
 }
 
 .arrow-btn:hover {
@@ -66,7 +71,7 @@ img {
 }
 
 .slider {
-  width: 100%;
+  width: 576px;
   height: 90vh;
   margin: 0 auto;
   position: relative;
@@ -76,7 +81,7 @@ img {
 .slider .slide {
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 576px;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -106,7 +111,7 @@ img {
 
 .dots {
   position: absolute;
-  bottom: 5%;
+  bottom: 8%;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);

@@ -8,21 +8,22 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  transition: background 0.5s;
 }
 
 img {
-  width: 100%;
+  width: 476px;
   height: 640px;
   border-radius: 16px;
   object-fit: cover;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.222);
 }
 
 .slider-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 700px;
-  width: 100%;
+  position: relative;
 }
 
 .arrow-btn {
@@ -31,10 +32,11 @@ img {
   min-width: 48px;
   min-height: 48px;
   border-radius: 64px;
-  margin: 0 32px;
+  margin: 0 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.4s;
   &:hover {
     cursor: pointer;
   }
@@ -45,17 +47,16 @@ img {
 }
 
 .slider {
-  width: 100%;
+  width: 576px;
   height: 90vh;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
 
   .slide {
-    // box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.222);
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 576px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -72,7 +73,7 @@ img {
 
 .dots {
   position: absolute;
-  bottom: 5%;
+  bottom: 8%;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
