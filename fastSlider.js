@@ -30,8 +30,10 @@ export class Slider {
     );
     this.#createDots();
     this.#gotToSlide(0);
-    this.sliderBtnRight.addEventListener("click", this.nextSlide.bind(this));
-    this.sliderBtnLeft.addEventListener("click", this.prevSlide.bind(this));
+    this.sliderBtnRight &&
+      this.sliderBtnRight.addEventListener("click", this.nextSlide.bind(this));
+    this.sliderBtnLeft &&
+      this.sliderBtnLeft.addEventListener("click", this.prevSlide.bind(this));
     this.dotContainer &&
       $(`${container} .dots__dot`, true)[0].classList.add("dots__dot--active");
 
