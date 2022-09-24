@@ -27,9 +27,6 @@ export function getAverageColor(imageElement, ratio) {
 
   while ((i += ratio * 4) < length) {
     ++count;
-    console.log("R: ", R);
-    console.log("G: ", G);
-    console.log("B: ", B);
     R += data.data[i];
     G += data.data[i + 1];
     B += data.data[i + 2];
@@ -38,7 +35,7 @@ export function getAverageColor(imageElement, ratio) {
   R = ~~(R / count);
   G = ~~(G / count);
   B = ~~(B / count);
-
+  console.log(R, G, B);
   return {
     R,
     G,

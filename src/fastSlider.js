@@ -14,6 +14,9 @@ export class Slider {
         this.#activateDots(slider);
       }
     }
+    window.onload = () => {
+      this.slides.forEach((el) => (el.style.transition = "transform .5s"));
+    };
     this.img = $("img", true);
     this.timer = timer * 1000;
     this.sliderTimer =
@@ -74,8 +77,6 @@ export class Slider {
       this.curSlide = 0;
     }
 
-    this.getAverageColor();
-
     this.#gotToSlide(this.curSlide);
     this.#activateDots(this.curSlide);
   }
@@ -88,7 +89,6 @@ export class Slider {
     if (this.curSlide < 0) {
       this.curSlide = this.slides.length - 1;
     }
-    this.getAverageColor();
     this.#gotToSlide(this.curSlide);
     this.#activateDots(this.curSlide);
   }
