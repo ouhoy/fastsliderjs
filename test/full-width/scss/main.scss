@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+}
+.slider-container {
+  overflow-x: hidden;
+  width: 100vw;
+  .slider {
+    width: 932px;
+    overflow: visible;
+    img {
+      width: 900px;
+    }
+  }
+}

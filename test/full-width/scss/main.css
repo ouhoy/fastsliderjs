@@ -1,1 +1,20 @@
-/*# sourceMappingURL=main.css.map */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+}
+
+.slider-container {
+  overflow-x: hidden;
+  width: 100vw;
+}
+.slider-container .slider {
+  width: 932px;
+  overflow: visible;
+}
+.slider-container .slider img {
+  width: 900px;
+}/*# sourceMappingURL=main.css.map */
