@@ -15,12 +15,9 @@ img {
   width: 476px;
   height: 640px;
   border-radius: 16px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.222);
+  object-fit: cover;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.222);
   transition: 0.4s ease-in-out;
-  -webkit-clip-path: url(#svgPath);
-          clip-path: url(#svgPath);
 }
 
 svg {
@@ -84,6 +81,8 @@ svg path {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -119,35 +118,22 @@ svg path {
   position: absolute;
   width: 24px;
   height: 24px;
-  border: 3px solid #fff;
+  border: 3px solid;
   border-radius: 50%;
-  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #fff transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {
-  -webkit-animation-delay: -0.45s;
-          animation-delay: -0.45s;
+  animation-delay: -0.45s;
 }
 
 .lds-ring div:nth-child(2) {
-  -webkit-animation-delay: -0.3s;
-          animation-delay: -0.3s;
+  animation-delay: -0.3s;
 }
 
 .lds-ring div:nth-child(3) {
-  -webkit-animation-delay: -0.15s;
-          animation-delay: -0.15s;
-}
-
-@-webkit-keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  animation-delay: -0.15s;
 }
 
 @keyframes lds-ring {
@@ -157,4 +143,6 @@ svg path {
   100% {
     transform: rotate(360deg);
   }
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
