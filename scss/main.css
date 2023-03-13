@@ -45,8 +45,11 @@ svg path {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.4s;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.arrow-btn:active {
+  transform: scale(0.95);
 }
 .arrow-btn svg {
   width: 24px;
@@ -93,8 +96,11 @@ svg path {
   background-color: rgba(255, 255, 255, 0.3607843137);
   border-radius: 4px;
   margin: 0 8px;
-  transition: all 0.5s;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.dots__dot:active {
+  transform: scale(0.95);
 }
 
 .dots__dot--active {

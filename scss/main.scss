@@ -19,6 +19,7 @@ img {
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.222);
   transition: 0.4s ease-in-out;
 }
+
 svg {
   height: 70%;
   transition: 0.4s ease-in-out;
@@ -27,6 +28,7 @@ svg {
     transition: 0.5s cubic-bezier(0, 1.46, 0.58, 1);
     // 0.5s cubic-bezier(0.52, 0.14, 0.73, 1.3)
   }
+
 }
 
 .slider-container {
@@ -46,11 +48,19 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.4s;
+  //transition: background 0.4s;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
   svg {
     width: 24px;
     fill: white;
+
+
   }
 }
 
@@ -96,8 +106,13 @@ svg {
   background-color: #ffffff5c;
   border-radius: 4px;
   margin: 0 8px;
-  transition: all 0.5s;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
 }
 
 .dots__dot--active {
@@ -114,6 +129,7 @@ svg {
   justify-content: center;
   cursor: wait;
 }
+
 .lds-ring div {
   box-sizing: border-box;
   display: block;
@@ -125,15 +141,19 @@ svg {
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #fff transparent transparent transparent;
 }
+
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
 }
+
 .lds-ring div:nth-child(2) {
   animation-delay: -0.3s;
 }
+
 .lds-ring div:nth-child(3) {
   animation-delay: -0.15s;
 }
+
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);

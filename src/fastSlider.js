@@ -19,6 +19,7 @@ export class Slider {
         window.onload = () => {
             this.slides.forEach((el) => (el.style.transition = "transform .5s"));
         };
+
         this.img = $("img", true);
         this.timer = timer * 1000;
         this.sliderTimer =
