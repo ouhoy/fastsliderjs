@@ -1,29 +1,23 @@
-import {getAverageColor} from "./getAverageColor.js";
 import {$} from "./controller.js"
 
 
-const arrowBtn = $(".arrow-btn", true);
+
 
 export class Slider {
     constructor(container, timer) {
 
         this.curSlide = 0;
-
-
-
         this.container = container;
+        this.timer = timer;
+
         this.slides = $(`${container} .slide`, true);
 
         window.onload = () => {
             this.slides.forEach((el) => (el.style.transition = "transform .5s"));
         };
 
+        // Slider Elements
         this.img = $("img", true);
-        this.timer = timer * 1000;
-        this.sliderTimer =
-            this.timer && setInterval(() => this.nextSlide(), this.timer);
-
-
         this.dotContainer = $(`${container} .dots`);
         this.sliderBtnRight = $(`${container} .button-right`);
         this.sliderBtnLeft = $(`${container} .button-left`);
@@ -33,9 +27,15 @@ export class Slider {
             (slide, i) => (slide.style.transform = ` translateX(${100 * i}%)`)
         );
 
+
         this.#createDots();
         this.gotToSlide(0);
 
+        // Set Slider's timer
+        this.sliderTimer =
+            this.timer && setInterval(() => this.nextSlide(), this.timer * 1000);
+
+        // Check if slider's elements are in the DOM
         this.sliderBtnRight &&
         this.sliderBtnRight.addEventListener("click", this.nextSlide.bind(this));
 
@@ -49,14 +49,14 @@ export class Slider {
         this.dotContainer.addEventListener("click", this.dotsSliderHandler.bind(this));
     };
 
-     dotsSliderHandler(e) {
-            if (e.target.classList.contains("dots__dot")) {
-                const {slider} = e.target.dataset;
-                this.curSlide = slider;
-                this.gotToSlide(slider);
-                this.activateDots(slider);
-            }
+    dotsSliderHandler(e) {
+        if (e.target.classList.contains("dots__dot")) {
+            const {slider} = e.target.dataset;
+            this.curSlide = slider;
+            this.gotToSlide(slider);
+            this.activateDots(slider);
         }
+    }
 
     activateDots(slides) {
         if (!this.dotContainer) return;
@@ -66,7 +66,6 @@ export class Slider {
         $(`${this.container} .dots__dot[data-slider="${slides}"]`).classList.add(
             "dots__dot--active"
         );
-        this.getAverageColor();
     }
 
     #createDots() {
@@ -96,6 +95,7 @@ export class Slider {
 
         this.gotToSlide(this.curSlide);
         this.activateDots(this.curSlide);
+        return this.curSlide
     }
 
     prevSlide() {
@@ -109,14 +109,8 @@ export class Slider {
         }
         this.gotToSlide(this.curSlide);
         this.activateDots(this.curSlide);
+
+        return this.curSlide
     }
 
-    getAverageColor() {
-        const {R, G, B} = getAverageColor(this.img[this.curSlide], 4);
-        document.body.style.background = `rgb(${R}, ${G},${B})`;
-        arrowBtn.forEach(
-            (el) => (el.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`)
-        );
-
-    }
 }
