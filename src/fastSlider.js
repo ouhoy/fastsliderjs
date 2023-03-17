@@ -2,19 +2,17 @@ import {getAverageColor} from "./getAverageColor.js";
 import {$} from "./controller.js"
 
 
-
 const arrowBtn = $(".arrow-btn", true);
 
 export class Slider {
     constructor(container, timer) {
-        function dotsSliderHandler(e) {
-            if (e.target.classList.contains("dots__dot")) {
-                const {slider} = e.target.dataset;
-                this.curSlide = slider;
-                this.gotToSlide(slider);
-                this.activateDots(slider);
-            }
-        }
+
+        this.curSlide = 0;
+
+
+
+        this.container = container;
+        this.slides = $(`${container} .slide`, true);
 
         window.onload = () => {
             this.slides.forEach((el) => (el.style.transition = "transform .5s"));
@@ -24,27 +22,41 @@ export class Slider {
         this.timer = timer * 1000;
         this.sliderTimer =
             this.timer && setInterval(() => this.nextSlide(), this.timer);
-        this.curSlide = 0;
+
+
         this.dotContainer = $(`${container} .dots`);
         this.sliderBtnRight = $(`${container} .button-right`);
         this.sliderBtnLeft = $(`${container} .button-left`);
-        this.slides = $(`${container} .slide`, true);
-        this.container = container;
+
+
         this.slides.forEach(
             (slide, i) => (slide.style.transform = ` translateX(${100 * i}%)`)
         );
+
         this.#createDots();
         this.gotToSlide(0);
+
         this.sliderBtnRight &&
         this.sliderBtnRight.addEventListener("click", this.nextSlide.bind(this));
+
         this.sliderBtnLeft &&
         this.sliderBtnLeft.addEventListener("click", this.prevSlide.bind(this));
+
         this.dotContainer &&
         $(`${container} .dots__dot`, true)[0].classList.add("dots__dot--active");
 
         this.dotContainer &&
-        this.dotContainer.addEventListener("click", dotsSliderHandler.bind(this));
-    }
+        this.dotContainer.addEventListener("click", this.dotsSliderHandler.bind(this));
+    };
+
+     dotsSliderHandler(e) {
+            if (e.target.classList.contains("dots__dot")) {
+                const {slider} = e.target.dataset;
+                this.curSlide = slider;
+                this.gotToSlide(slider);
+                this.activateDots(slider);
+            }
+        }
 
     activateDots(slides) {
         if (!this.dotContainer) return;
