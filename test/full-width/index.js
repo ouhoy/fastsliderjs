@@ -3,49 +3,15 @@ import {getAverageColor} from "../../src/getAverageColor.js";
 import {$} from "../../src/controller.js"
 
 // TODO img should be inside of the container plus it should have an ID
-const images = $("img", true);
-const arrowBtn = $(".arrow-btn", true);
+const image = $("img");
 
-if (images[0].complete) {
-    const {R, G, B} = getAverageColor(images[0], 4);
+if (image.complete) {
+    const {R, G, B} = getAverageColor(image, 4);
     document.body.style.background = `rgb(${R}, ${G},${B})`;
 }
 
-function avg() {
-    const {R, G, B} = getAverageColor(images[sliderOne.prevSlide()], 4);
-    document.body.style.background = `rgb(${R}, ${G},${B})`;
-    arrowBtn.forEach(
-        (el) => (el.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`)
-    );
-
-}
-
-
-const sliderOne = new Slider(".slider-container");
-
-
+const sliderOne = new Slider(".slider-container", 0, {getAverageColor: true});
 document.body.addEventListener("keydown", (e) => {
-
-    if (e.key === "ArrowLeft") {
-
-
-        avg()
-    }
-
-    if (e.key === "ArrowRight") {
-
-        function avg() {
-            const {R, G, B} = getAverageColor(images[sliderOne.nextSlide()], 4);
-            document.body.style.background = `rgb(${R}, ${G},${B})`;
-            arrowBtn.forEach(
-                (el) => (el.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`)
-            );
-
-        }
-
-        avg()
-    }
-
     e.key === "ArrowLeft" && sliderOne.prevSlide();
     e.key === "ArrowRight" && sliderOne.nextSlide();
 });

@@ -1,47 +1,52 @@
+import {getAverageColor} from "./getAverageColor.js";
 import {$} from "./controller.js"
 
 
-
-
 export class Slider {
-    constructor(container, timer) {
+    constructor(container, timer, options) {
 
         this.curSlide = 0;
-        this.container = container;
         this.timer = timer;
+        this.options = options;
+        this.container = container;
 
-        this.slides = $(`${container} .slide`, true);
+        // TODO timer duration should be given by the user via an object.
+        this.sliderTimer =
+            this.timer && setInterval(() => this.nextSlide(), this.timer * 1000);
 
-        window.onload = () => {
-            this.slides.forEach((el) => (el.style.transition = "transform .5s"));
-        };
 
         // Slider Elements
         this.img = $("img", true);
+        this.slides = $(`${container} .slide`, true);
+
         this.dotContainer = $(`${container} .dots`);
+
         this.sliderBtnRight = $(`${container} .button-right`);
         this.sliderBtnLeft = $(`${container} .button-left`);
 
-
+        // Place every slide
+        // TODO placement of each slide shouldn't be static
         this.slides.forEach(
             (slide, i) => (slide.style.transform = ` translateX(${100 * i}%)`)
         );
 
-
         this.#createDots();
         this.gotToSlide(0);
 
-        // Set Slider's timer
-        this.sliderTimer =
-            this.timer && setInterval(() => this.nextSlide(), this.timer * 1000);
+        // Add transform transition to each slide
+        // TODO transform duration should be given by the user
+        window.onload = () => {
+            this.slides.forEach((el) => (el.style.transition = "transform .5s"));
+        };
 
-        // Check if slider's elements are in the DOM
+        // Check if slider's elements are available in the DOM
         this.sliderBtnRight &&
         this.sliderBtnRight.addEventListener("click", this.nextSlide.bind(this));
 
         this.sliderBtnLeft &&
         this.sliderBtnLeft.addEventListener("click", this.prevSlide.bind(this));
 
+        // TODO if no dots is available set activate dots to false in the options object
         this.dotContainer &&
         $(`${container} .dots__dot`, true)[0].classList.add("dots__dot--active");
 
@@ -66,6 +71,8 @@ export class Slider {
         $(`${this.container} .dots__dot[data-slider="${slides}"]`).classList.add(
             "dots__dot--active"
         );
+
+        this.options.getAverageColor && this.getAverageColor();
     }
 
     #createDots() {
@@ -109,8 +116,23 @@ export class Slider {
         }
         this.gotToSlide(this.curSlide);
         this.activateDots(this.curSlide);
-
         return this.curSlide
     }
 
+    // TODO average color should return the RGB value only
+    getAverageColor() {
+        const {R, G, B} = getAverageColor(this.img[this.curSlide], 4);
+        // return {R,G,B}
+
+        document.body.style.background = `rgb(${R}, ${G},${B})`;
+        if (this.sliderBtnRight) {
+            this.sliderBtnRight.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`
+        }
+
+        if (this.sliderBtnLeft) {
+            this.sliderBtnLeft.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`
+        }
+
+
+    }
 }
