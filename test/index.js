@@ -3,29 +3,28 @@ import {Slider} from "../src/fastSlider.js";
 import {getAverageColor} from "../src/getAverageColor.js";
 
 
-const image = $("img");
 const img = $("img", true);
-const arrowBtn = $(".arrow-btn", true);
+const arrowButtons = $(".arrow-btn", true);
 
-if (image.complete) {
-    const {R, G, B} = getAverageColor(image, 4);
+if (img[0].complete) {
+    const {R, G, B} = getAverageColor(img[0], 4);
     document.body.style.background = `rgb(${R}, ${G},${B})`;
-    arrowBtn.forEach(
+    arrowButtons.forEach(
         (el) => (el.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`)
     );
 } else {
-    image.addEventListener("load", () => {
-        const {R, G, B} = getAverageColor(image, 4);
+    img[0].addEventListener("load", () => {
+        const {R, G, B} = getAverageColor(img[0], 4);
         document.body.style.background = `rgb(${R}, ${G},${B})`;
-        arrowBtn.forEach(
+        arrowButtons.forEach(
             (el) => (el.style.background = `rgb(${R + 11}, ${G + 11},${B + 8})`)
         );
     });
 }
-const btn1 = arrowBtn[1].innerHTML;
+const nextSlideButton = arrowButtons[1].innerHTML;
 
 if (!img[1].complete) {
-    arrowBtn[1].innerHTML = `
+    arrowButtons[1].innerHTML = `
   
   <div class="lds-ring">
   <div></div>
@@ -38,12 +37,12 @@ if (!img[1].complete) {
 }
 
 img[1].addEventListener("load", function () {
-    arrowBtn[1].innerHTML = btn1;
+    arrowButtons[1].innerHTML = nextSlideButton;
 
     console.log("img[1] loaded");
 });
 
-const slider1 = new Slider(".slider-container");
+const slider1 = new Slider(".slider-container", {getAverageColor: true});
 document.body.addEventListener("keydown", (e) => {
     e.key === "ArrowLeft" && slider1.prevSlide();
     e.key === "ArrowRight" && slider1.nextSlide();

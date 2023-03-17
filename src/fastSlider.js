@@ -1,18 +1,17 @@
 import {getAverageColor} from "./getAverageColor.js";
 import {$} from "./controller.js"
 
-
 export class Slider {
-    constructor(container, timer, options) {
+    constructor(container, options = {timer: 0, getAverageColor: false}) {
 
         this.curSlide = 0;
-        this.timer = timer;
-        this.options = options;
         this.container = container;
+        this.options = options;
+
 
         // TODO timer duration should be given by the user via an object.
         this.sliderTimer =
-            this.timer && setInterval(() => this.nextSlide(), this.timer * 1000);
+            this.options.timer && setInterval(() => this.nextSlide(), this.options.timer * 1000);
 
 
         // Slider Elements
@@ -64,13 +63,21 @@ export class Slider {
     }
 
     activateDots(slides) {
+
         if (!this.dotContainer) return;
+
         $(`${this.container} .dots__dot`, true).forEach((dot) =>
             dot.classList.remove("dots__dot--active")
         );
         $(`${this.container} .dots__dot[data-slider="${slides}"]`).classList.add(
             "dots__dot--active"
         );
+
+        // Reset slider timer on click on one of the dots
+        if (this.options.timer) {
+            clearInterval(this.sliderTimer);
+            this.sliderTimer = setInterval(() => this.nextSlide(), this.options.timer * 1000);
+        }
 
         this.options.getAverageColor && this.getAverageColor();
     }
@@ -90,9 +97,9 @@ export class Slider {
     }
 
     nextSlide() {
-        if (this.timer) {
+        if (this.options.timer) {
             clearInterval(this.sliderTimer);
-            this.sliderTimer = setInterval(() => this.nextSlide(), this.timer * 1000);
+            this.sliderTimer = setInterval(() => this.nextSlide(), this.options.timer * 1000);
         }
         this.curSlide++;
 
@@ -106,9 +113,9 @@ export class Slider {
     }
 
     prevSlide() {
-        if (this.timer) {
+        if (this.options.timer) {
             clearInterval(this.sliderTimer);
-            this.sliderTimer = setInterval(() => this.nextSlide(), this.timer * 1000);
+            this.sliderTimer = setInterval(() => this.nextSlide(), this.options.timer * 1000);
         }
         this.curSlide--;
         if (this.curSlide < 0) {
@@ -122,6 +129,7 @@ export class Slider {
     // TODO average color should return the RGB value only
     getAverageColor() {
         const {R, G, B} = getAverageColor(this.img[this.curSlide], 4);
+
         // return {R,G,B}
 
         document.body.style.background = `rgb(${R}, ${G},${B})`;
@@ -135,4 +143,6 @@ export class Slider {
 
 
     }
+
+
 }
