@@ -92,7 +92,7 @@ export class Slider {
     nextSlide() {
         if (this.timer) {
             clearInterval(this.sliderTimer);
-            this.sliderTimer = setInterval(() => this.nextSlide(), this.timer);
+            this.sliderTimer = setInterval(() => this.nextSlide(), this.timer * 1000);
         }
         this.curSlide++;
 
@@ -108,7 +108,7 @@ export class Slider {
     prevSlide() {
         if (this.timer) {
             clearInterval(this.sliderTimer);
-            this.sliderTimer = setInterval(() => this.nextSlide(), this.timer);
+            this.sliderTimer = setInterval(() => this.nextSlide(), this.timer * 1000);
         }
         this.curSlide--;
         if (this.curSlide < 0) {

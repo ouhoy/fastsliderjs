@@ -10,7 +10,7 @@ if (image.complete) {
     document.body.style.background = `rgb(${R}, ${G},${B})`;
 }
 
-const sliderOne = new Slider(".slider-container", 0, {getAverageColor: true});
+const sliderOne = new Slider(".slider-container", 5, {getAverageColor: true});
 document.body.addEventListener("keydown", (e) => {
     e.key === "ArrowLeft" && sliderOne.prevSlide();
     e.key === "ArrowRight" && sliderOne.nextSlide();
