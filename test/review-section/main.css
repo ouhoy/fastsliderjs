@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+}
+
+.slider-container {
+  margin: 64px 0;
+  overflow-x: hidden;
+  width: 100vw;
+}
+.slider-container .slider {
+  width: 932px;
+  overflow: visible;
+}
+.slider-container .slider .event-container {
+  width: 900px;
+  height: 300px;
+  background-color: antiquewhite;
+  border: 2px bisque solid;
+}
+.slider-container .slider .event-container h1 {
+  color: black;
+}
+
+/*# sourceMappingURL=main.css.map */

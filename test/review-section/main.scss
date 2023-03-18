@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+}
+
+.slider-container {
+  margin: 64px 0;
+  overflow-x: hidden;
+  width: 100vw;
+
+  .slider {
+    width: 932px;
+    overflow: visible;
+
+    .event-container {
+      width: 900px;
+      height: 300px;
+      background-color: antiquewhite;
+      border: 2px bisque solid;
+
+      h1 {
+        color: black;
+      }
+
+    }
+
+
+  }
+}
